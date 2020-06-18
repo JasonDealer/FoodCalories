@@ -229,23 +229,34 @@ document.addEventListener('DOMContentLoaded',() => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const statusMessage = document.createElement('div');
+            let statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
             statusMessage.textContent = message.loading;
             form.append(statusMessage);
 
-            const request = new XMLHttpRequest();
+            let request = new XMLHttpRequest();
             request.open('POST', 'server.php');
 
-            request.setRequestHeader('Content-type', 'multipart/form-data');
-            const formData = new FormData(form);
+            request.setRequestHeader('Content-type', 'application/json');
+            let formData = new FormData(form);
 
-            request.send(formData);
+            const object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+
+            const json = JSON.stringify(object);
+
+            request.send(json);
 
             request.addEventListener('load', () => {
                 if (request.status === 200) {
                     console.log(request.response);
                     statusMessage.textContent = message.sucsess;
+                    form.reset();
+                    setTimeout(() => {
+                        statusMessage.remove();
+                    }, 3000);
                 } else {
                     statusMessage.textContent = message.failure;
                 }
