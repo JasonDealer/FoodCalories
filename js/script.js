@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded',() => {
     }
 
     modal.addEventListener('click', (e) => {
-        if (e.target === modal || e.target.getAttribute('data-close' == '')) {   
+        if (e.target === modal || e.target.classList.contains('modal__close')) {   
             closeModal();
         }
     });
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded',() => {
             let statusMessage = document.createElement('img');
             statusMessage.src = message.loading;
             statusMessage.style.cssText = "display: block; margin: 0 auto";
-            /* form.append(statusMessage); */
+            form.append(statusMessage);
             form.insertAdjacentElement('afterend', statusMessage);
 
             let request = new XMLHttpRequest();
@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded',() => {
         thanksModal.classList.add('modal__dialog');
         thanksModal.innerHTML = `
         <div class="modal__content">
+            <div class="modal__close" data-close >×</div>
             <div class="modal__title">${message}</div>
         </div>
         `;
