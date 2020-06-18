@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded',() => {
         'menu__item'
         ).render();
     
-    //forms send
+    //forms send Fetch API
 
     const forms = document.querySelectorAll('form');
     const message = {
@@ -232,22 +232,33 @@ document.addEventListener('DOMContentLoaded',() => {
             form.append(statusMessage);
             form.insertAdjacentElement('afterend', statusMessage);
 
-            let request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-
-            request.setRequestHeader('Content-type', 'application/json');
             let formData = new FormData(form);
-
+ 
             const object = {};
             formData.forEach(function(value, key){
                 object[key] = value;
             });
 
-            const json = JSON.stringify(object);
+            fetch('server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            }).then(data => 
+                data.text()
+            )
+            .then(data => {
+                console.log(data);
+                showThanksModal(message.sucsess);
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
+            });
 
-            request.send(json);
-
-            request.addEventListener('load', () => {
+/*             request.addEventListener('load', () => {
                 if (request.status === 200) {
                     console.log(request.response);
                     showThanksModal(message.sucsess);
@@ -256,7 +267,7 @@ document.addEventListener('DOMContentLoaded',() => {
                 } else {
                     showThanksModal(message.failure);
                 }
-            });
+            }); */
         });
     }
 
@@ -282,5 +293,18 @@ document.addEventListener('DOMContentLoaded',() => {
             closeModal();
         }, 3000);
     }
+
+    // Fetch API
     
+    /* fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({name: 'Alex'}),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(json => console.log(json));
+ */
+
 });
