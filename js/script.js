@@ -149,14 +149,14 @@ document.addEventListener('DOMContentLoaded',() => {
             this.classes = classes;
             this.price = price;
             this.parent = document.querySelector(parentSelector);
-            /* this.transfer = 2.3;
-            this.changeToBYN(); */
+            this.transfer = 2.3;
+            this.changeToBYN();
         }
 
-        /* changeToBYN(){
-            this.price = this.price / this.transfer;
+        changeToBYN(){
+            this.price = (this.price / this.transfer).toFixed(2);
             
-        } */
+        }
 
         render() {
             const element = document.createElement('div');
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded',() => {
         'vegy',
         'Меню "Фитнес"',
         'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-        20,
+        40,
         '.menu .container',
         'menu__item'
         ).render();
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded',() => {
         'elite',
         'Меню “Премиум”',
         'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-        48,
+        92,
         '.menu .container',
         'menu__item'
         ).render();
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded',() => {
         'post',
         'Меню "Постное"',
         'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков. ',
-        38,
+        68,
         '.menu .container',
         'menu__item'
         ).render();
