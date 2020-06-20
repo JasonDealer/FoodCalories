@@ -12,11 +12,21 @@
   },
   "author": "",
   "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
   "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
     "json-server": "^0.16.1"
   },
   "bugs": {
     "url": "https://github.com/JasonDealer/FoodCalories/issues"
   },
-  "homepage": "https://github.com/JasonDealer/FoodCalories#readme"
+  "homepage": "https://github.com/JasonDealer/FoodCalories#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.10.1"
+  }
 }
