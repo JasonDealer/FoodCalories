@@ -1,4 +1,4 @@
-import {getResources} from '../services';
+import {getResources} from '../services/services';
 
 function menu () {
         //Создание карточек

@@ -343,7 +343,7 @@ function forms(formSelector, modalTimerId) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module '../services'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "../js/services/services.js");
 
 
 function menu () {
@@ -391,7 +391,7 @@ function menu () {
             }
         }
     
-        !(function webpackMissingModule() { var e = new Error("Cannot find module '../services'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())('http://localhost:3000/menu')
+        Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["getResources"])('http://localhost:3000/menu')
             .then(data => {
                 data.forEach(({img, altimg, title, descr, price}) => {
                     new MenuCard(img, altimg, title, descr, price, '.menu .container',
