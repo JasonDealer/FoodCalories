@@ -1,47 +1,51 @@
-function modal() {
+function closeModal (modalSelector) {
+    const modal = document.querySelector(modalSelector);
+
+    modal.classList.remove('show', 'fadeModal');
+    modal.classList.add('hide');
+    document.body.style.overflow = '';
+}
+
+function openModal (modalSelector, modalTimerId) {
+    const modal = document.querySelector(modalSelector);
+
+    modal.classList.add('show', 'fadeModal');
+    modal.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+
+    console.log(modalTimerId);
+    if (modalTimerId) {
+    clearInterval(modalTimerId);
+    }
+}
+
+function modal(btnsSelector, modalSelector, modalTimerId) {
     //modal
 
-    const modalBtns = document.querySelectorAll('[data-modal]'),
-          modal = document.querySelector('.modal');
-
-    function openModal () {
-        modal.classList.add('show', 'fadeModal');
-        modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
-        clearInterval(modalTimerId);
-    }
+    const modalBtns = document.querySelectorAll(btnsSelector),
+          modal = document.querySelector(modalSelector);
 
     modalBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            openModal();
-        });
+        btn.addEventListener('click', () =>  openModal(modalSelector, modalTimerId));
     });
-
-    function closeModal () {
-        modal.classList.remove('show', 'fadeModal');
-        modal.classList.add('hide');
-        document.body.style.overflow = '';
-    }
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.classList.contains('modal__close')) {   
-            closeModal();
+            closeModal(modalSelector);
         }
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.code === "Escape" && modal.classList.contains('show')) {
-            closeModal();
+            closeModal(modalSelector);
         }
     });
-
-    //
-
-    const modalTimerId = setTimeout(openModal, 5000);
 
     //Проверка на то, что пользователь долистал до конца страницы
     /*if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) */
 
 }
 
-module.exports = modal;
+export default modal;
+export {closeModal};
+export {openModal};
